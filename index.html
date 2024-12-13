@@ -1,45 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cold-Hot Game</title>
+    <title>Игра Холодно-Горячо</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="start-screen">
-        <h1>Cold-Hot Game</h1>
-        <button id="new-game">New Game</button>
-        <button id="view-history">View History</button>
+    <h2>Игра Холодно-Горячо</h2>
+
+    <div class="menu">
+        <button id="view-past-games">Просмотр прошлых игр</button>
+        <button id="clear-db">Очистить базу данных</button>
+        <button id="help">Помощь</button>
     </div>
 
-    <div id="game-screen" style="display: none;">
-        <h2>Guess the number</h2>
-        <p>Enter a number between 1 and <span id="field-size"></span>:</p>
-        <input type="number" id="guess" min="1">
-        <button id="submit-guess">Submit Guess</button>
-        <p id="feedback"></p>
+    <div class="settings">
+        <label for="player-name">Имя игрока:</label>
+        <input type="text" id="player-name" placeholder="Введите ваше имя">
+        <button id="startBtn">Новая игра</button>
     </div>
 
-    <div id="history-screen" style="display: none;">
-        <h2>Game History</h2>
-        <ul id="game-history"></ul>
-        <p id="empty-history-message" style="display: none;">Список пуст</p>
-        <button id="clear-history">Clear History</button> <!-- Новая кнопка для очистки -->
-        <button id="back-to-game">Back to Game</button> <!-- Кнопка вернуться к игре -->
+    <div id="game-container" style="display: none;">
+        <p id="game-status"></p>
+        <label for="guessInput">Введите ваше предположение:</label>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button id="guessBtn">Угадать</button>
+        <button id="close-game" style="display: none;">Закрыть</button>
     </div>
 
-    <div id="result-screen" style="display: none;">
-        <h2>Game Result</h2>
-        <p id="result-message"></p>
-        <button id="new-game-from-result">New Game</button>
-        <button id="view-history-from-result">View History</button>
+    <div class="game-list-container">
+        <ul id="game-list" class="game-list"></ul>
+        <button id="close-game-list" style="display: none;">Закрыть</button>
     </div>
 
-    <script src="js/format_data.js"></script>
-    <script src="js/game.js"></script>
-    <script src="js/db.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/index.js"></script>
+    <div id="help-container" style="display: none;">
+        <h3>Справка</h3>
+        <p>Введите ваше имя и нажмите "Новая игра". Затем пытайтесь угадать загаданное число от 1 до 100 с подсказками "Холодно", "Тепло" и "Горячо".</p>
+        <button id="close-help">Закрыть</button>
+    </div>
+
+    <script src="https://unpkg.com/idb@7.0.0/build/umd.js"></script>
+    <script type="module" src="./js/game.js"></script>
+    <script type="module" src="./js/db.js"></script>
 </body>
 </html>
